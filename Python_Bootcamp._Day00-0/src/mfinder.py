@@ -10,14 +10,12 @@ def check_m(image):
     else:
         print("False")
 
-
 if len(sys.argv) == 1:
     image = ""
     for i, line in enumerate(sys.stdin):
         if i > 2 or len(line.rstrip()) != 5:
             print("Error")
             sys.exit()
-        print(line.strip())
         image += (line.rstrip())
     check_m(image)
 else:
