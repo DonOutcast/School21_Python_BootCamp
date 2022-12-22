@@ -11,7 +11,7 @@ def my_decorator(func):
 
 @my_decorator
 def empty(purse: typing.Dict[str, int]) -> typing.Dict[str, int]:
-    return purse if purse else {}
+    return {}
 
 
 @my_decorator
