@@ -1,0 +1,1 @@
+{"nodes": ["alpha", "beta", "gamma", "delta", "omega"], "edges": [{"from": "alpha", "to": "beta"}, {"from": "alpha", "to": "delta"}, {"from": "alpha", "to": "omega"}, {"from": "beta", "to": "gamma"}, {"from": "delta", "to": "gamma"}]}
