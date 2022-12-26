@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+<title>List</title>
+{% endblock%}
+{% block content %}
+    {% if response|length == 0 %}
+    <h1>Hello,  this i your files!</h1>
+    {% for post in posts %}
+    <div><p>{response.author.nickname}} says: <b>{{post.body}}</b></p></div>
+    {% endfor %}
+
+    {% else %}
+    <h1>Hello,  your files list is empty</h1>
+    {% endif %}
+{% endblock %}

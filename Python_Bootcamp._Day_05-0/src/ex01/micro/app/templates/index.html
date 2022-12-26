@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Home Page</title>
+{% endblock%}
+{% block content %}
+    <form action="/success" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <input type="submit" value="Upload" />
+          {% for item in items %} <h1> {{ item }} </h1> {% endfor %}
+    </form>
+    <audio controls autoplay>
+        {% for item in items %}
+
+        <source src="{{ item }}" type="audio/ogg">
+        <source src="{{ item }}"  type="audio/mpeg">
+        <source src="{{ item }}"  type="audio/x-wav">
+        {% endfor %}
+    </audio>
+<p>Click the buttons to play or pause the audio.</p>
+
+<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>
+
+<script>
+var x = document.getElementById("myAudio");
+
+function playAudio() {
+  x.play();
+}
+
+function pauseAudio() {
+  x.pause();
+}
+</script>
+
+{% endblock %}
