@@ -1,27 +1,42 @@
-import logging
-import requests as requests
-from bs4 import BeautifulSoup
-import re
 import json
 import argparse
+import requests
+from bs4 import BeautifulSoup
+import sys
+import logging
+from py2neo import Graph
+from py2neo import Path
+from neo4j import GraphDatabase
 
-# logging.basicConfig(filename='tmp.log', level=logging.INFO, filemode="w")
-#
-# count = 0
-#
-#
-# def get_links(link: str) -> list:
-#     response = requests.get(link)
-#     soup = BeautifulSoup(response.content, 'html.parser')
-#     links = list()
-#     for link in soup.find('div', attrs={'id': 'bodyContent'}).findAll('a'):
-#         # if link.get("href") is not None:
-#         # string = str(link.get('href'))
-#         # if link["href"].__contains__("wikipedia.org") and link["href"].startswith("https://"):
-#         links.append(link)
-#     return links
-#
-#
+
+class HelloWorldExample:
+
+    def __init__(self, uri, user, password):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
+    def close(self):
+        self.driver.close()
+
+    def print_greeting(self, message):
+        with self.driver.session() as session:
+            greeting = session.execute_write(self._create_and_return_greeting, message)
+            print(greeting)
+
+    @staticmethod
+    def _create_and_return_greeting(tx, message):
+        result = tx.run('''call apoc.load.json("file://wiki.json")
+                            yield value''', message=message)
+        return result.single()[0]
+
+
+url = "bolt://localhost:7687"
+user = "neo4j"
+password = "test"
+
+count = 0
+logging.basicConfig(stream=sys.stdout, level=logging.INFO, filemode="w")
+
+
 def add_argv():
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=str, required=False, default="Harry_Potter")
@@ -29,143 +44,61 @@ def add_argv():
     args = parser.parse_args()
     return args
 
-#
-# def check_link(checked, current):
-#     r = re.compile(r'^/wiki/[^/:]+$')
-#     if 'class' in checked.attrs and checked['class'] == 'internal':
-#         return False
-#     if r.match(checked['href']) is not None and r.findall(checked['href']) != "/wiki/" + current:
-#         return True
-#     else:
-#         return False
-#
-#
-# def cache_wiki(article, result=None, depth=3, max_links=1000):
-#     global count
-#     if str(article).startswith("/wiki/"):
-#         article = article.replace("/wiki/", "")
-#     linked_nodes = []
-#     if result is None:
-#         result = {"nodes": [], "edges": []}
-#     if depth < 0:
-#         return result
-#     p = re.compile(r'(.+) - Wikipedia')
-#     print("See : ", article)
-#     page = requests.get("https://en.wikipedia.org/wiki/" + article)
-#     soup = BeautifulSoup(page.content, 'html.parser')
-#     print(p.findall(soup.title.string))
-#     # title = p.findall(soup.title.string)[0]
-#     title = article
-#     logging.info(json.dumps({'title': title, 'href': "https://en.wikipedia.org/wiki/" + article}))
-#     if title not in result['nodes']:
-#         result['nodes'].append(title)
-#         for link in get_links("https://en.wikipedia.org/wiki/" + article):
-#             # if count >= 1000:
-#             #     break
-#             if 'title' in link.attrs and check_link(link, article) is True and len(result['nodes']) < max_links:
-#                 if link['title'] not in result['nodes']:
-#                     linked_nodes.append(link['title'])
-#                     result['nodes'].append(link['title'])
-#                     count += 1
-#                 new_edge = {"from": title, "to": link['title'], "href": 'https://en.wikipedia.org' + str(link['href'])}
-#                 if new_edge not in result['edges']:
-#                     result['edges'].append(new_edge)
-#             if link != "https://en.wikipedia.org/wiki/" + article:
-#                 result = cache_wiki(link.get("href"), result, depth - 1, max_links)
-#     json_tmp = json.dumps(result)
-#     with open("cache.json", "w") as outfile:
-#         outfile.write(json_tmp)
-#     return result
-#
-#
-# def main():
-#     arguments = add_argv()
-#     cache = cache_wiki(article=arguments.p, depth=arguments.d, max_links=arguments.m)
-#     json_object = json.dumps(cache)
-#     with open("cache.json", "w") as outfile:
-#         outfile.write(json_object)
-#
-#
-# if __name__ == "__main__":
-#     main()
-#     # with open("cache.json", "r") as f:
-#     #     temp = json.load(f)
-#     # # print(temp["edges"])
-#     # for i in temp.get("edges"):
-#     #     print(i)
-#     # # for i in temp.get("nodes"):
-#     # #     print(i)
 
-import logging
-import requests as requests
-from bs4 import BeautifulSoup
-import re
-import json
-import argparse
-
-logging.basicConfig(filename='tmp.log', level=logging.INFO, filemode="w", )
+def get_links(link: str) -> list:
+    response = requests.get(link).text
+    soup = BeautifulSoup(response, 'html.parser')
+    links = list()
+    for link in soup.find('div', attrs={'id': 'bodyContent'}).findAll('a'):
+        if count >= 999:
+            break
+        if link.get("title") is not None:
+            if link.get("href").startswith("/wiki/"):
+                links.append(link)
+                logging.info(link.get("href"))
+    return links
 
 
-def check_link(checked, current):
-    r = re.compile(r'^/wiki/[^/:]+$')
-    if 'class' in checked.attrs and checked['class'] == 'internal':
-        return False
-    if r.match(checked['href']) is not None and r.findall(checked['href']) != "/wiki/" + current:
-        return True
-    else:
-        return False
+def get_all_links(entry_link: str, iteration: int):
+    global count
+    title = entry_link.rsplit("/")[-1]
+    result = {"nodes": [], "edges": []}
+    if entry_link.rsplit("/")[-1] not in result["nodes"]:
+        result["nodes"].append(entry_link.rsplit("/")[-1])
+    if iteration > 0 and count < 1000:
+        for link in get_links(entry_link):
+            if count >= 999:
+                break
 
-
-def cache_wiki(article, result=None, depth=3, max_links=1000):
-    linked_nodes = []
-    if result is None:
-        result = {"nodes": [], "edges": []}
-    if depth < 0:
-        return result
-    p = re.compile(r'(.+) - Wikipedia')
-    page = requests.get("https://en.wikipedia.org/wiki/" + article)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    title = p.findall(soup.title.text)[0]
-    logging.info(json.dumps({'title': title, 'href': "https://en.wikipedia.org/wiki/" + article}))
-    if title not in result['nodes']:
-        result['nodes'].append(title)
-        references = soup.find('div', attrs={'id': 'bodyContent'}).findAll('a')
-        for link in references:
-            if 'title' in link.attrs and check_link(link, article) is True and len(result['nodes']) < max_links:
-                if link['title'] not in result['nodes']:
-                    linked_nodes.append(link['title'])
-                    result['nodes'].append(link['title'])
+            if title not in result["nodes"]:
+                result["nodes"].append(link["title"])
+            else:
+                if link["title"] not in result["nodes"]:
+                    result["nodes"].append(link["title"])
                 new_edge = {"from": title, "to": link['title'], "href": 'https://en.wikipedia.org' + link['href']}
                 if new_edge not in result['edges']:
                     result['edges'].append(new_edge)
-        for node in linked_nodes:
-            result = cache_wiki(node, result, depth - 1, max_links)
-    json_tmp = json.dumps(result)
-    with open("cache.json", "w") as outfile:
-        outfile.write(json_tmp)
+            count += 1
+            if link.get("href") != entry_link and iteration - 1 > 0:
+                result = get_all_links('https://en.wikipedia.org' + str(link.get("href")).replace("/wki/", ""),
+                                       iteration - 1)
     return result
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-p', type=str, required=False, default="Harry_Potter")
-    parser.add_argument('-d', type=int, required=False, default=3)
-    parser.add_argument('-m', type=int, required=False, default=10)
-    args = parser.parse_args()
-    depth = args.d if args.d is not None else 3
-    max_l = args.m if args.m is not None else 100
-    cache = cache_wiki(article=args.p, depth=depth, max_links=max_l)
-    json_object = json.dumps(cache)
-    with open("cache.json", "w") as outfile:
-        outfile.write(json_object)
+try:
+    arguments = add_argv()
+    name = str(arguments.p).replace(' ', '_')
+    URL = f"https://en.wikipedia.org/wiki/{name}"
 
+    result = get_all_links(URL, arguments.d)
+    if count < 20:
+        print("\nToo few links. Please, change other default starting page")
+    else:
+        json_object = json.dumps(result, indent=4, ensure_ascii=False)
+        with open('wiki.json', 'w', encoding='utf-8') as w:
+            w.write(json_object)
+        # greeter = HelloWorldExample(url, user, password)
+        # greeter.close()
 
-if __name__ == "__main__":
-    main()
-    with open("cache.json", "r") as f:
-        temp = json.load(f)
-    # print(temp["edges"])
-    for i in temp.get("edges"):
-        print(i)
-    # for i in temp.get("nodes"):
-    #     print(i)
+except requests.exceptions.ConnectionError:
+    print("Bad URL")
