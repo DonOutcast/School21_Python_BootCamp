@@ -1,0 +1,7 @@
+grpcio==1.51.1
+grpcio-tools==1.51.1
+names==0.3.0
+pydantic-1.10.2
+
+
+

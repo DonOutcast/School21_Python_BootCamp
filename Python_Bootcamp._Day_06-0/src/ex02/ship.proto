@@ -1,0 +1,46 @@
+syntax = 'proto2';
+
+package unary;
+
+service Unary {
+    rpc GetServerResponse(Message) returns (stream SpaceShip) {}
+}
+
+message SpaceShip {
+    required Alignment alignment = 1;
+    required string name = 2 [default = 'Unknown'];
+    required Class class_ship = 3;
+    required float length = 4;
+    required int32 crew_size = 5;
+    required bool armed = 6;
+    repeated Officers officers = 7;
+
+    message Officers {
+        required string first_name = 1;
+        required string last_name = 2;
+        required string rank = 3;
+    }
+}
+
+enum Alignment {
+    Ally = 0;
+    Enemy = 1;
+}
+
+enum Class {
+    Corvette = 0;
+    Frigate = 1;
+    Cruiser = 2;
+    Destroyer = 3;
+    Carrier = 4;
+    Dreadnought = 5;
+}
+
+message Message{
+    required int32 cord_1 = 1;
+    required int32 cord_2 = 2;
+    required float cord_3 = 3;
+    required int32 cord_4 = 4;
+    required int32 cord_5 = 5;
+    required float cord_6 = 6;
+}

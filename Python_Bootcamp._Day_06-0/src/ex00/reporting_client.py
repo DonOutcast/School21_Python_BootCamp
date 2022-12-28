@@ -4,6 +4,7 @@ import ship_pb2
 import ship_pb2_grpc
 from google.protobuf.json_format import MessageToJson
 
+
 class MyUnaryClient(object):
 
     def __init__(self):
@@ -28,10 +29,10 @@ class MyUnaryClient(object):
             ship_pb2.Message(**response_value))
         for tmp_value in message:
             print(MessageToJson(tmp_value, indent=4,
-                  preserving_proto_field_name=True,
-                  including_default_value_fields=True))
+                                preserving_proto_field_name=True,
+                                including_default_value_fields=True))
 
-# 17 45 40.0409 −29 00 28.118
+
 def main():
     try:
         parser = argparse.ArgumentParser(description='grpc client')
@@ -42,7 +43,6 @@ def main():
         parser.add_argument("minut", type=int, help="minutes.")
         parser.add_argument("sec", type=float, help="seconds.")
         args = parser.parse_args()
-        print(args)
         client_value = MyUnaryClient()
         client_value.get_response(args.hour, args.minute,
                                   args.seconds, args.degrees,

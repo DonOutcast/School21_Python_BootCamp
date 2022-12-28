@@ -8,28 +8,40 @@
       <input type="submit" value="Upload" />
           {% for item in items %} <h1> {{ item }} </h1> {% endfor %}
     </form>
-    <audio controls autoplay>
         {% for item in items %}
-
-        <source src="{{ item }}" type="audio/ogg">
-        <source src="{{ item }}"  type="audio/mpeg">
-        <source src="{{ item }}"  type="audio/x-wav">
+        <div>
+            <audio controls autoplay id="{{ item }}">
+                <source src="/static/{{ item }}" type="audio/mp3">
+            </audio>
+            <button class="play {{ item }}" type="button">Play Audio</button>
+            <button class="pause {{ item }}" type="button">Pause Audio</button>
+        </div>
         {% endfor %}
-    </audio>
 <p>Click the buttons to play or pause the audio.</p>
 
-<button onclick="playAudio()" type="button">Play Audio</button>
-<button onclick="pauseAudio()" type="button">Pause Audio</button>
 
 <script>
-var x = document.getElementById("myAudio");
+const playButtons = document.querySelectorAll('.play');
+const pauseButtons = document.querySelectorAll('.pause');
 
-function playAudio() {
-  x.play();
+playButtons.forEach(item => {
+    item.addEventListener('click', (evt) => {
+        playAudio(evt.target.classList[1]);
+    })
+})
+
+pauseButtons.forEach(item => {
+    item.addEventListener('click', (evt) => {
+        pauseAudio(evt.target.classList[1]);
+    })
+})
+
+function playAudio(id) {
+    document.getElementById(id).play();
 }
 
-function pauseAudio() {
-  x.pause();
+function pauseAudio(id) {
+    document.getElementById(id).pause();
 }
 </script>
 
