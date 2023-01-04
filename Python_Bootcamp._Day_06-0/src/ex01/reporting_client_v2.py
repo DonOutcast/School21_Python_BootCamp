@@ -1,57 +1,57 @@
 import grpc
 import argparse
-import ship_pb2
-import ship_pb2_grpc
+import ships_pb2
+import ships_pb2_grpc
 from pydantic import BaseModel, root_validator
 from google.protobuf.json_format import MessageToJson
 
 
 class MyModelJson(BaseModel):
-    # alignment: str
-    # name: str
-    # class_ship:
-    # length: float
-    # crew_size: int
-    # armed: bool
-    # officers: list
+    alignment: str
+    name: str
+    class_ship: str
+    length: float
+    crew_size: int
+    armed: int
+    officers: list
 
     @root_validator
     def check_ship(cls, values):
-        if values['class_ship'] == 0 \
-                and 80. <= values['length'] <= 250. \
+        if values['class_ship'] == 'Corvette' \
+            and 80 <= values['length'] <= 250 \
                 and 4 <= values['crew_size'] <= 10 \
-                and values['armed'] == True \
-                and values['alignment'] == 'Enemy':
-            return values
-        if values['class_ship'] == 1 \
-                and 300. <= values['length'] <= 600. \
-                and 10 <= values['crew_size'] <= 15 \
-                and values['armed'] == 1 \
-                and values['alignment'] == 'Ally':
-            return values
-        if values['class_ship'] == 2 \
-                and 500. <= values['length'] <= 1000. \
-                and 15 <= values['crew_size'] <= 30 \
                 and values['armed'] == 1 \
                 and values['alignment'] == 'Enemy':
             return values
-        if values['class_ship'] == 3 \
-                and 800. <= values['length'] <= 2000. \
-                and 50 <= values['crew_size'] <= 80 \
-                and values['armed'] == 1 \
-                and values['alignment'] == 'Ally':
+        if values['class_ship'] == 'Frigate' \
+                and 300 <= values['length'] <= 600 \
+        and  10 <= values['crew_size'] <= 15 \
+            and values['armed'] == 1 \
+        and values['alignment'] == 'Ally':
             return values
-        if values['class_ship'] == 4 \
-                and 1000. <= values['length'] <= 4000. \
-                and 120 <= values['crew_size'] <= 250 \
-                and values['armed'] == 0 \
-                and values['alignment'] == 'Enemy':
+        if values['class_ship'] == 'Cruiser' \
+                and 500 <= values['length'] <= 1000 \
+        and  15 <= values['crew_size'] <= 30 \
+            and values['armed'] == 1 \
+        and values['alignment'] == 'Enemy':
             return values
-        if values['class_ship'] == 5 \
-                and 5000. <= values['length'] <= 20000. \
-                and 300 <= values['crew_size'] <= 500 \
-                and values['armed'] == 1 \
-                and values['alignment'] == 'Enemy':
+        if values['class_ship'] == 'Destroyer' \
+                and 800 <= values['length'] <= 2000 \
+        and  50 <= values['crew_size'] <= 80 \
+            and values['armed'] == 1 \
+        and values['alignment'] == 'Ally':
+            return values
+        if values['class_ship'] == 'Carrier' \
+                and 1000 <= values['length'] <= 4000 \
+        and  120 <= values['crew_size'] <= 250 \
+            and values['armed'] == 0 \
+        and values['alignment'] == 'Enemy':
+            return values
+        if values['class_ship'] == 'Dreadnought' \
+                and 5000 <= values['length'] <= 20000 \
+        and  300 <= values['crew_size'] <= 500 \
+            and values['armed'] == 1 \
+        and values['alignment'] == 'Enemy':
             return values
 
 
@@ -59,9 +59,9 @@ class MyUnaryClient(object):
 
     def __init__(self):
         self.host = 'localhost'
-        self.port = 8080
+        self.port = 50051
         self.channel = grpc.insecure_channel(f'{self.host}:{self.port}')
-        self.stub = ship_pb2_grpc.UnaryStub(self.channel)
+        self.stub = ships_pb2_grpc.UnaryStub(self.channel)
 
     def get_response(self,
                      args_hour, args_minute,
@@ -76,17 +76,16 @@ class MyUnaryClient(object):
             'cord_6': args_sec
         }
         message = self.stub.GetServerResponse(
-            ship_pb2.Message(**response_value))
-        for tmp_value in message:
-            message_json = MessageToJson(tmp_value, indent=4,
+            ships_pb2.Message(**response_value))
+        for message_value in message:
+            message_json = MessageToJson(message_value, indent=4,
                                          preserving_proto_field_name=True,
                                          including_default_value_fields=True)
             try:
-                # print(message_json)
                 ship_value = MyModelJson.parse_raw(message_json)
-                print(ship_value)
-            except BaseException as e:
-                print("Your error", e)
+                print(ship_value.json())
+            except BaseException:
+                pass
 
 
 def main():
@@ -103,8 +102,8 @@ def main():
         client_value.get_response(args.hour, args.minute,
                                   args.seconds, args.degrees,
                                   args.minut, args.sec)
-    except BaseException as b:
-        print(b)
+    except BaseException:
+        pass
 
 
 if __name__ == '__main__':

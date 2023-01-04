@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import ship_pb2 as ship__pb2
+import ships_pb2 as ships__pb2
 
 
 class UnaryStub(object):
@@ -16,8 +16,8 @@ class UnaryStub(object):
         """
         self.GetServerResponse = channel.unary_stream(
                 '/unary.Unary/GetServerResponse',
-                request_serializer=ship__pb2.Message.SerializeToString,
-                response_deserializer=ship__pb2.SpaceShip.FromString,
+                request_serializer=ships__pb2.Message.SerializeToString,
+                response_deserializer=ships__pb2.SpaceShip.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_UnaryServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetServerResponse': grpc.unary_stream_rpc_method_handler(
                     servicer.GetServerResponse,
-                    request_deserializer=ship__pb2.Message.FromString,
-                    response_serializer=ship__pb2.SpaceShip.SerializeToString,
+                    request_deserializer=ships__pb2.Message.FromString,
+                    response_serializer=ships__pb2.SpaceShip.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class Unary(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/unary.Unary/GetServerResponse',
-            ship__pb2.Message.SerializeToString,
-            ship__pb2.SpaceShip.FromString,
+            ships__pb2.Message.SerializeToString,
+            ships__pb2.SpaceShip.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
