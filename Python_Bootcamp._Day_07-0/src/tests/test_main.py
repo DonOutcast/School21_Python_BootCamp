@@ -1,6 +1,6 @@
 import pytest
 
-from ex00.main import check_len, check_param, check_type
+from .main import check_len, check_param, check_type
 
 
 def test_check_param():

@@ -1,6 +1,6 @@
 import re
 import random
-from database import Database
+from .database import Database
 
 
 def initialization_database() -> Database:
