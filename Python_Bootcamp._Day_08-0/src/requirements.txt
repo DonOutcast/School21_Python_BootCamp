@@ -1,0 +1,8 @@
+fastapi==0.88.0
+httpx==0.23.3
+uvicorn-0.20.0
+bs4==0.0.1
+aioredis==2.0.1
+
+
+

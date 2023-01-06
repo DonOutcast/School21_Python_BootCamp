@@ -68,5 +68,6 @@ class Agent:
             print(f"AGENT {count + 1}: {agent_action} NEO {neo_attack_or_d} AGENT Health: {temp.health}")
 
 
-play = Agent()
-asyncio.run(play.fightmany(4))
+if __name__ == "__main__":
+    play = Agent()
+    asyncio.run(play.fightmany(4))
