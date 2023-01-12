@@ -1,0 +1,56 @@
+{
+        "1": {
+                "name": "Darth Vader",
+                "description": "Dark Lord Sith",
+                "strength": 5,
+                "inventory": [
+                        {"Coins":  1000},
+                        {"Darksaber":  1}
+                ]
+        },
+        "2": {
+                "name": "Emperor Palpatine",
+                "description": "Emperor of the galaxy Empire",
+                "strength": 4,
+                "inventory": [
+                        {"Coins":  500},
+                        {"Lightning spell scroll": 1}
+                ]
+        },
+        "3": {
+                "name": "General Grievous",
+                "description": "General or the army Separations",
+                "strength": 3,
+                "inventory": [
+                        {"Coins": 0},
+                        {"Lightsaber":  4}
+                ]
+        },
+        "4": {
+                "name": "Boba Fett",
+                "description": "The most known Bounty Hunter",
+                "strength": 2,
+                "inventory": [
+                        {"Coins": 250},
+                        {"Boba Fett's rifle":  1}
+                ]
+        },
+        "5": {
+                "name": "Nihil",
+                "description": "Marauder",
+                "strength": 1,
+                "inventory": [
+                        {"Coins": 50},
+                        {"Laser carbine":  1}
+                ]
+        },
+        "6": {
+                "name": "Imperial soldier",
+                "description": "Default combar unit in the Empire. Always misses",
+                "strength": -6,
+                "inventory": [
+                        {"Coins": 25},
+                        {"Default rifle": 1}
+                ]
+        }
+}

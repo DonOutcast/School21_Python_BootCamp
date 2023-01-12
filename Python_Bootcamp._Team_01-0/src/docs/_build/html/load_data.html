@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>load_data module &mdash; Python_Bootcamp._Team_01-0 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Python_Bootcamp._Team_01-0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">load_data module</a><ul>
+<li><a class="reference internal" href="#load_data.Enemy"><code class="docutils literal notranslate"><span class="pre">Enemy</span></code></a><ul>
+<li><a class="reference internal" href="#load_data.Enemy.attack"><code class="docutils literal notranslate"><span class="pre">Enemy.attack()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Enemy.give"><code class="docutils literal notranslate"><span class="pre">Enemy.give()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Enemy.take_hit"><code class="docutils literal notranslate"><span class="pre">Enemy.take_hit()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load_data.NPC"><code class="docutils literal notranslate"><span class="pre">NPC</span></code></a><ul>
+<li><a class="reference internal" href="#load_data.NPC.give"><code class="docutils literal notranslate"><span class="pre">NPC.give()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.NPC.receive"><code class="docutils literal notranslate"><span class="pre">NPC.receive()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.NPC.request"><code class="docutils literal notranslate"><span class="pre">NPC.request()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load_data.Protagonist"><code class="docutils literal notranslate"><span class="pre">Protagonist</span></code></a><ul>
+<li><a class="reference internal" href="#load_data.Protagonist.advance_backpack"><code class="docutils literal notranslate"><span class="pre">Protagonist.advance_backpack()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.advance_craft"><code class="docutils literal notranslate"><span class="pre">Protagonist.advance_craft()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.advance_strength"><code class="docutils literal notranslate"><span class="pre">Protagonist.advance_strength()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.attack"><code class="docutils literal notranslate"><span class="pre">Protagonist.attack()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.drop"><code class="docutils literal notranslate"><span class="pre">Protagonist.drop()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.get_inventory"><code class="docutils literal notranslate"><span class="pre">Protagonist.get_inventory()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.give"><code class="docutils literal notranslate"><span class="pre">Protagonist.give()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.go"><code class="docutils literal notranslate"><span class="pre">Protagonist.go()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.heal"><code class="docutils literal notranslate"><span class="pre">Protagonist.heal()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.receive"><code class="docutils literal notranslate"><span class="pre">Protagonist.receive()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.sum_inventory"><code class="docutils literal notranslate"><span class="pre">Protagonist.sum_inventory()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.take_hit"><code class="docutils literal notranslate"><span class="pre">Protagonist.take_hit()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.talk_to"><code class="docutils literal notranslate"><span class="pre">Protagonist.talk_to()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.Protagonist.whereami"><code class="docutils literal notranslate"><span class="pre">Protagonist.whereami()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load_data.dict_to_json_enemy"><code class="docutils literal notranslate"><span class="pre">dict_to_json_enemy()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.dict_to_json_location"><code class="docutils literal notranslate"><span class="pre">dict_to_json_location()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.dict_to_json_npc"><code class="docutils literal notranslate"><span class="pre">dict_to_json_npc()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.dict_to_json_player"><code class="docutils literal notranslate"><span class="pre">dict_to_json_player()</span></code></a></li>
+<li><a class="reference internal" href="#load_data.dict_to_json_question"><code class="docutils literal notranslate"><span class="pre">dict_to_json_question()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python_Bootcamp._Team_01-0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">load_data module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/load_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-load_data">
+<span id="load-data-module"></span><h1>load_data module<a class="headerlink" href="#module-load_data" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="load_data.Enemy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">Enemy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Enemy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Enemy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#load_data.NPC" title="load_data.NPC"><code class="xref py py-class docutils literal notranslate"><span class="pre">NPC</span></code></a></p>
+<p>Класс Enemy</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Enemy.attack">
+<span class="sig-name descname"><span class="pre">attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protagonist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#load_data.Protagonist" title="load_data.Protagonist"><span class="pre">Protagonist</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Enemy.attack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Enemy.attack" title="Permalink to this definition"></a></dt>
+<dd><p>Метод атаки класса Enemy
+:param protagonist:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Enemy.give">
+<span class="sig-name descname"><span class="pre">give</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protagonist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#load_data.Protagonist" title="load_data.Protagonist"><span class="pre">Protagonist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Enemy.give"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Enemy.give" title="Permalink to this definition"></a></dt>
+<dd><p>Метод передачи одной единицы инвентаря
+:param protagonist:
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Enemy.take_hit">
+<span class="sig-name descname"><span class="pre">take_hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Enemy.take_hit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Enemy.take_hit" title="Permalink to this definition"></a></dt>
+<dd><p>Метод получения удара классом Enemy
+:param value:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="load_data.NPC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">NPC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#NPC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.NPC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Класс NPC (Не игровой персонаж)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.NPC.give">
+<span class="sig-name descname"><span class="pre">give</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protagonist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#load_data.Protagonist" title="load_data.Protagonist"><span class="pre">Protagonist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#NPC.give"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.NPC.give" title="Permalink to this definition"></a></dt>
+<dd><p>Метод передачи одной единицы инвертаря
+:param protagonist:
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.NPC.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#NPC.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.NPC.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Метод получения одной единицы инвертаря
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.NPC.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#NPC.request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.NPC.request" title="Permalink to this definition"></a></dt>
+<dd><p>Метод обработки запрос от основного персонажа
+Метод находится в разработке
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="load_data.Protagonist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">Protagonist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Класс Protagonist</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.advance_backpack">
+<span class="sig-name descname"><span class="pre">advance_backpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.advance_backpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.advance_backpack" title="Permalink to this definition"></a></dt>
+<dd><p>Метод повышения свойства/показателя вместимости инвентаря
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.advance_craft">
+<span class="sig-name descname"><span class="pre">advance_craft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.advance_craft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.advance_craft" title="Permalink to this definition"></a></dt>
+<dd><p>Метод повышения свойства/показателя ремесла
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.advance_strength">
+<span class="sig-name descname"><span class="pre">advance_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.advance_strength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.advance_strength" title="Permalink to this definition"></a></dt>
+<dd><p>Метод повышения свойства/показателя силы
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.attack">
+<span class="sig-name descname"><span class="pre">attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enemy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.attack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.attack" title="Permalink to this definition"></a></dt>
+<dd><p>Метод атаки противника
+:param enemy:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.drop">
+<span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.drop" title="Permalink to this definition"></a></dt>
+<dd><p>Метод сброса одной единицы инвентаря
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.get_inventory">
+<span class="sig-name descname"><span class="pre">get_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.get_inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.get_inventory" title="Permalink to this definition"></a></dt>
+<dd><p>Метод возвращающий состав и кол-во инвентаря
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.give">
+<span class="sig-name descname"><span class="pre">give</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.give"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.give" title="Permalink to this definition"></a></dt>
+<dd><p>Метод передачи одной единицы инвентаря NPC (не игровой персонаж)
+:param npc:
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.go">
+<span class="sig-name descname"><span class="pre">go</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="load_map.html#load_map.Direction" title="load_map.Direction"><span class="pre">Direction</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.go"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.go" title="Permalink to this definition"></a></dt>
+<dd><p>Метод смены локации
+:param direction:
+:param direct:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.heal">
+<span class="sig-name descname"><span class="pre">heal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.heal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.heal" title="Permalink to this definition"></a></dt>
+<dd><p>Метод восстановления одной единицы здоровья
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.receive" title="Permalink to this definition"></a></dt>
+<dd><p>Метод получения одной единицы инвентаря
+:param item:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.sum_inventory">
+<span class="sig-name descname"><span class="pre">sum_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.sum_inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.sum_inventory" title="Permalink to this definition"></a></dt>
+<dd><p>Метод определяющий кол-во занятого места в инвентаре
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.take_hit">
+<span class="sig-name descname"><span class="pre">take_hit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.take_hit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.take_hit" title="Permalink to this definition"></a></dt>
+<dd><p>Метод получения повреждения во время сражения
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.talk_to">
+<span class="sig-name descname"><span class="pre">talk_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.talk_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.talk_to" title="Permalink to this definition"></a></dt>
+<dd><p>Метод разговора с NPC (не игровой персонаж)
+:param npc:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data.Protagonist.whereami">
+<span class="sig-name descname"><span class="pre">whereami</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="load_map.html#load_map.Direction" title="load_map.Direction"><span class="pre">Direction</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#Protagonist.whereami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.Protagonist.whereami" title="Permalink to this definition"></a></dt>
+<dd><p>Метод определения названия текущей локации
+:param direction:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_data.dict_to_json_enemy">
+<span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">dict_to_json_enemy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#dict_to_json_enemy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.dict_to_json_enemy" title="Permalink to this definition"></a></dt>
+<dd><p>Метод конвертирования json БД Злодея в словарь
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_data.dict_to_json_location">
+<span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">dict_to_json_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#dict_to_json_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.dict_to_json_location" title="Permalink to this definition"></a></dt>
+<dd><p>Метод конвертирования json БД локаций в словарь
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_data.dict_to_json_npc">
+<span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">dict_to_json_npc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#dict_to_json_npc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.dict_to_json_npc" title="Permalink to this definition"></a></dt>
+<dd><p>Метод конвертирования json БД NPC в словарь
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_data.dict_to_json_player">
+<span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">dict_to_json_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#dict_to_json_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.dict_to_json_player" title="Permalink to this definition"></a></dt>
+<dd><p>Метод конвертирования json БД игрока в словарь
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_data.dict_to_json_question">
+<span class="sig-prename descclassname"><span class="pre">load_data.</span></span><span class="sig-name descname"><span class="pre">dict_to_json_question</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#dict_to_json_question"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#load_data.dict_to_json_question" title="Permalink to this definition"></a></dt>
+<dd><p>Метод конвертирования json БД Диалогов в словарь
+:return:</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, fbillye (teamlead, developer), aedie (developer).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

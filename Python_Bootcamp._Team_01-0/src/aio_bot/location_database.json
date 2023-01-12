@@ -1,0 +1,26 @@
+{
+        "0": {
+                "name": "Tatooine",
+                "NPCs": [1],
+                "Enemies": [6],
+                "Available paths": [1]
+        },
+        "1": {
+                "name": "Kashyyk",
+                "NPCs": [2],
+                "Enemies": [5, 5, 4],
+                "Available paths": [0, 2]
+        },
+        "2": {
+                "name": "Yavin",
+                "NPCs": [3, 4],
+                "Enemies": [6, 6, 6, 3],
+                "Available paths": [1, 3]
+        },
+        "3": {
+                "name":"Death Star",
+                "NPSc": [],
+                "Enemies": [2, 1],
+                "Available paths": [0, 1, 2]
+        }
+}

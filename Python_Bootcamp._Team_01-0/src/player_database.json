@@ -1,0 +1,63 @@
+{
+        "player": {
+                "1": {
+                        "id": 1,
+                        "name": "Luke",
+                        "description": "Jedi Knight",
+                        "home": "1",
+                        "inventory": [
+                                {
+                                        "saber": 1
+                                },
+                                {
+                                        "food": 1
+                                }
+                        ]
+                },
+                "2": {
+                        "id": 2,
+                        "name": "Han_Solo",
+                        "description": "smuggler",
+                        "home": "3",
+                        "inventory": [
+                                {
+                                        "blaster": 1
+                                },
+                                {
+                                        "food": 1
+                                }
+                        ]
+                },
+                "3": {
+                        "id": 3,
+                        "name": "Mandolorian",
+                        "description": "Mercenary",
+                        "home": "1",
+                        "inventory": [
+                                {
+                                        "blaster": 1
+                                },
+                                {
+                                        "food": 1
+                                }
+                        ]
+                },
+                "4": {
+                        "id": 4,
+                        "name": "Obi_Van_Kenobi",
+                        "description": "Master Jedi Knight",
+                        "home": "3",
+                        "inventory": [
+                                {
+                                        "saber": 1
+                                },
+                                {
+                                        "robe jedi": 1
+                                },
+                                {
+                                        "food": 1
+                                }
+                        ]
+                }
+        }
+}

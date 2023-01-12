@@ -1,0 +1,28 @@
+{
+        "enemy": {
+                "1": {
+                        "id": 1,
+                        "name": "Darth Vader",
+                        "description": "Dark Lord Sith, galaxy empire",
+                        "strength": 3
+                },
+                "2": {
+                        "id": 2,
+                        "name": "Imperator Palpatin",
+                        "description": "Imperator of the galaxy impire",
+                        "strength": 2
+                },
+                "3": {
+                        "id": 3,
+                        "name": "Boba Fett",
+                        "description": "The Bounty Hunter",
+                        "strength": 0
+                },
+                "4": {
+                        "id": 4,
+                        "name": "General Grivus",
+                        "description": "General army Separations",
+                        "strength": 1
+                }
+        }
+}

@@ -1,3 +1,4 @@
+import json
 import uuid
 import httpx
 import aioredis
@@ -5,8 +6,26 @@ import requests
 import asyncio
 import uvicorn
 import async_timeout
+from typing import List
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
+from pydantic import BaseModel
+
+
+class Url(BaseModel):
+    url: str
+
+
+class UrlList(BaseModel):
+    data: List[Url]
+
+
+class Items(BaseModel):
+    web_site: str
+    link: str
+    UUID4: uuid.UUID
+    status: str
+
 
 STOPWORD = "STOP"
 api = FastAPI()
@@ -31,6 +50,7 @@ async def pubsub():
                     await asyncio.sleep(0.1)
             except asyncio.TimeoutError:
                 pass
+
     async with psub as p:
         await p.subscribe("channel:1")
         await reader(p)
@@ -49,18 +69,18 @@ async def tasks(data_value: str):
         response_value = requests.get(url_value)
     cache = await redis.get(url_value)
     if cache is not None:
-        return {'web site': soup_value.title.string,
-                'link': url_value,
-                # 'UUID4': uuid.uuid4(),
-                'status': response_value.status_code}
-    await redis.set(soup_value.title.string,
-                    url_value,
-                    # uuid.uuid4(),
-                    response_value.status_code)
-    return {'web site': soup_value.title.string,
-            'link': url_value,
-            # 'UUID4': uuid.uuid4(),
-            'status': response_value.status_code}
+        return Items(web_site=soup_value.title.string,
+                     link=url_value,
+                     UUID4=uuid.uuid4(),
+                     status=response_value.status_code)
+    await redis.set(url_value, json.dumps(str(Items(web_site=soup_value.title.string,
+                                                link=url_value,
+                                                UUID4=uuid.uuid4(),
+                                                status=response_value.status_code))), ex=100)
+    return Items(web_site=soup_value.title.string,
+                 link=url_value,
+                 UUID4=uuid.uuid4(),
+                 status=response_value.status_code)
 
 
 if __name__ == '__main__':

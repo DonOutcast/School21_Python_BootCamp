@@ -18,7 +18,7 @@ def size_formula(connections: int):
 
 
 def main():
-    graph_file = environ.get('WIKI_FILE', 'wiki.json')
+    graph_file = environ.get('WIKI_FILE', 'test_graph.json')
     with open(graph_file, 'r') as file:
         content = json.loads(file.read())
 
@@ -59,8 +59,7 @@ def main():
 
 
 if __name__ == '__main__':
-    # try:
-    #     # main()
-    # except Exception as err:
-    #     print(err)
-    main()
+    try:
+        main()
+    except Exception as err:
+        print(err)

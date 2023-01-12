@@ -1,0 +1,94 @@
+{
+        "npc": {
+                "1": {
+                        "id": 1,
+                        "name": "jedi",
+                        "description": "Jedi Knight",
+                        "inventory": [
+                                {
+                                        "saber": 1
+                                }
+                        ],
+                        "quest": []
+                },
+                "2": {
+                        "id": 2,
+                        "name": "civilian",
+                        "description": "The civilian is planet",
+                        "inventory": [],
+                        "quest": []
+                },
+                "3": {
+                        "id": 3,
+                        "name": "worker",
+                        "description": "The worker is planet",
+                        "inventory": [
+                                {
+                                        "stimulator": 5
+                                }
+                        ],
+                        "quest": [
+                                {
+                                        "id": 1,
+                                        "text": "1_quest"
+                                }
+                        ]
+                },
+                "4": {
+                        "id": 4,
+                        "name": "trader",
+                        "description": "The trader is planet",
+                        "inventory": [
+                                {
+                                        "food": 5
+                                },
+                                {
+                                        "armor": 5
+                                },
+                                {
+                                        "stimulator": 5
+                                },
+                                {
+                                        "blaster": 5
+                                }
+                        ],
+                        "quest": [
+                                {
+                                        "id": 1,
+                                        "text": "1_quest"
+                                },
+                                {
+                                        "id": 2,
+                                        "text": "2_quest"
+                                }
+                        ]
+                },
+                "5": {
+                        "id": 5,
+                        "name": "Master Jedi",
+                        "description": "It is a bee in a telnyashka.",
+                        "inventory": [
+                                {
+                                        "saber": 2
+                                },
+                                {
+                                        "robe jedi": 2
+                                }
+                        ],
+                        "quest": [
+                                {
+                                        "id": 1,
+                                        "text": "1_quest"
+                                },
+                                {
+                                        "id": 2,
+                                        "text": "2_quest"
+                                },
+                                {
+                                        "id": 3,
+                                        "text": "3_quest"
+                                }
+                        ]
+                }
+        }
+}

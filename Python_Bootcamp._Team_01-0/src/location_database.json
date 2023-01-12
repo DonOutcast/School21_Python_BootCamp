@@ -1,0 +1,81 @@
+{
+    "locations": {
+        "1": {
+            "id": 1,
+            "name": "Tatooin",
+            "description": "It is the home planet of Luke Skywalker",
+            "route": [
+                2
+            ],
+            "enemy": [
+                "3"
+            ],
+            "npc": [
+                "2",
+                "3"
+            ]
+        },
+        "2": {
+            "id": 2,
+            "name": "Death Star",
+            "description": "It is the combat Space Station",
+            "route": [
+                1,
+                3,
+                4
+            ],
+            "enemy": [
+                "1"
+            ],
+            "npc": [
+                "3"
+            ]
+        },
+        "3": {
+            "id": 3,
+            "name": "Coruscant",
+            "description": "It is the capital Old Rebulic",
+            "route": [
+                2
+            ],
+            "enemy": [
+                "2"
+            ],
+            "npc": [
+                "2",
+                "3",
+                "4",
+                "5"
+            ]
+        },
+        "4": {
+            "id": 4,
+            "name": "Korriban",
+            "description": "It is the home planet of Sith",
+            "route": [
+                2,
+                5
+            ],
+            "enemy": [
+                "4"
+            ],
+            "npc": [
+                "3"
+            ]
+        },
+        "5": {
+            "id": 5,
+            "name": "Hot",
+            "description": "It is freezy planet",
+            "route": [
+                4
+            ],
+            "enemy": [
+                "1"
+            ],
+            "npc": [
+                "3"
+            ]
+        }
+    }
+}
